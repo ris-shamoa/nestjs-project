@@ -1,8 +1,7 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Post, UseFilters, ValidationPipe } from '@nestjs/common';
 import { RegistrationDto } from './dto/registration.dto';
 import { UserService } from './user.service';
-
-@Controller('user')
+@Controller('registration')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
