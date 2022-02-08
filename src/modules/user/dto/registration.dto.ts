@@ -5,14 +5,9 @@ export class RegistrationDto {
   name: string;
 
   @IsInt()
-  age: number;
-
-  @IsInt()
   mobile_number: number;
 
   @IsEmail()
   email: string;
 
-  @IsString()
-  password: string;
 }

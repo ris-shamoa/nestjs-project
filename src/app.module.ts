@@ -8,6 +8,7 @@ import { AppService } from './app.service';
 import { loggerMiddleware } from './common/middleware/logger.middleware';
 import { UserModule } from './modules/user/user.module';
 import { DatabaseModule } from './modules/database/database.module';
+import { OtpModule } from './modules/otp/otp.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -17,9 +18,11 @@ import { DatabaseModule } from './modules/database/database.module';
       DB_PORT: Joi.number().required(),
       DB_USER: Joi.string().required(),
       DB_PASSWORD: Joi.string().required(),
-      DB_NAME: Joi.string().required()
+      DB_NAME: Joi.string().required(),
+      JWT_SECRET: Joi.string().required(),
+      JWT_EXPIRATION_TIME: Joi.string().required(),
     })
-  }), UserModule, DatabaseModule],
+  }), UserModule, DatabaseModule, OtpModule],
   controllers: [AppController],
   providers: [AppService],
 })
