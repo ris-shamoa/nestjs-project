@@ -11,7 +11,6 @@ export class AuthController {
   @Post()
   async registration (@Body() RegistrationDto: RegistrationDto): Promise<User>{
       let registrationAuth = await this.AuthService.registration(RegistrationDto);
-      console.log('---- registration result at the auth layer ----', registrationAuth);
       return registrationAuth;
   }
 
