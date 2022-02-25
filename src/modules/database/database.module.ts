@@ -15,7 +15,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
                 password: configService.get('DB_PASSWORD'),
                 database: configService.get('DB_NAME'),
                 entities: ["dist/**/*.entity{.ts,.js}"],// be careful with the path u may have to change it for prod
-                synchronize: true,  //its better to have synchronize as false for production. this creates the table if not there
+                synchronize: false,  //its better to have synchronize as false for production. this creates the table if not there
               })
 
         })
