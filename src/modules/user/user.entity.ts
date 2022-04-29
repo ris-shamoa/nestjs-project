@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { Otp } from '../otp/otp.entity';
 
-@Entity({ name: 'user' })
+@Entity({ name: 'users' })
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -13,7 +13,7 @@ export class User {
   email: string;
 
   @Column({ unique: true })
-  mobile_number: number;
+  mobile_number: string;
 
   @Column({ default: true })
   isActive: boolean;

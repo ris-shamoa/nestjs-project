@@ -27,7 +27,7 @@ import { OtpModule } from './modules/otp/otp.module';
   providers: [AppService],
 })
 export class AppModule {
-  // constructor(private connection: Connection) { }
+  constructor(private connection: Connection) { }
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(loggerMiddleware)

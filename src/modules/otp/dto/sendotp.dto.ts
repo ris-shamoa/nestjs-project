@@ -1,6 +1,6 @@
-import { IsInt, Length, MaxLength, MinLength } from "class-validator";
+import { IsString } from "class-validator";
 
 export class otpDto {
-    @IsInt()
-    mobile_number: number;
+    @IsString()
+    mobile_number: string;
 }

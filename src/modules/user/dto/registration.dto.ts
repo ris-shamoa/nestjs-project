@@ -1,13 +1,12 @@
-import { IsString, IsInt, Length, IsEmail } from 'class-validator';
+import { IsString, IsInt, IsEmail } from 'class-validator';
 
 export class RegistrationDto {
   @IsString()
   name: string;
 
-  @IsInt()
-  mobile_number: number;
+  @IsString()
+  mobile_number: string;
 
   @IsEmail()
   email: string;
-
 }

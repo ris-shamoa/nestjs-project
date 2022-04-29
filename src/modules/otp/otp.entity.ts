@@ -7,10 +7,10 @@ export class Otp {
     id: number;
 
     @Column()
-    otp: number;
+    otp: string;
 
     @Column()
-    mobile_number: number;
+    mobile_number: string;
 
     @Column()
     expiry: Date;

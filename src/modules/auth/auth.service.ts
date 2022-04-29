@@ -8,14 +8,12 @@ import { LoginDto } from "../user/dto/login.dto";
 @Injectable()
 export class AuthService {
     constructor(private readonly userService: UserService) { }
-    async registration(registrationDto: RegistrationDto): Promise<User> {
-    //     const hashedPassword = await bcrypt.hash(registrationDto.password, 10);
-    //     console.log('---- hashed password ----', hashedPassword);
+    async registration(registrationDto: RegistrationDto): Promise<boolean> {
         let createdUser = await this.userService.registration(registrationDto);
-        return createdUser;
+        return true;
     }
 
-    async login(loginDto: LoginDto):Promise<string> {
+    async login(loginDto: LoginDto): Promise<string> {
         const userInfo = await this.userService.login(loginDto);
         return userInfo ? 'Login Successful' : 'Please enter correct credentials'
     }

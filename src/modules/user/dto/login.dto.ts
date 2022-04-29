@@ -1,11 +1,9 @@
-import { IsInt, Length } from "class-validator";
+import { IsInt, IsString, Length } from "class-validator";
 
 export class LoginDto {
-    @IsInt()
-    @Length(10)
-    mobile_number: number;
+    @IsString()
+    mobile_number: string;
  
     @IsInt()
-    @Length(4)
     otp: number;
 }
