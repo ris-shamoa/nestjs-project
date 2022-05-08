@@ -1,5 +1,4 @@
 import * as Joi from '@hapi/joi';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm/connection/Connection';
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -9,6 +8,7 @@ import { loggerMiddleware } from './common/middleware/logger.middleware';
 import { UserModule } from './modules/user/user.module';
 import { DatabaseModule } from './modules/database/database.module';
 import { OtpModule } from './modules/otp/otp.module';
+import { FileModule } from './modules/files/files.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -21,8 +21,12 @@ import { OtpModule } from './modules/otp/otp.module';
       DB_NAME: Joi.string().required(),
       JWT_SECRET: Joi.string().required(),
       JWT_EXPIRATION_TIME: Joi.string().required(),
+      AMAZON_REGION: Joi.string().required(),
+      AMAZON_ACCESS_KEY: Joi.string().required(),
+      AMAZON_SECRET_KEY: Joi.string().required(),
+      AMAZON_BUCKET_NAME: Joi.string().required()
     })
-  }), UserModule, DatabaseModule, OtpModule],
+  }), UserModule, DatabaseModule, OtpModule, FileModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -6,19 +6,25 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({default: null, nullable: true})
+  @Column({ default: null, nullable: true })
   name: string;
 
-  @Column({default: null, nullable: true})
+  @Column({ default: null, nullable: true })
   email: string;
 
   @Column({ unique: true })
   mobile_number: string;
 
   @Column({ default: true })
-  isActive: boolean;
+  is_active: boolean;
 
-  @Column({ default: 'not-registered' })
+  @Column({ nullable: true })
+  profile_image: string;
+
+  @Column({ nullable: true })
+  prescription: string;
+
+  @Column({ default: 'not_registered' })
   status: string;
 
   @OneToMany(() => Otp, (otp: Otp) => otp.id)
