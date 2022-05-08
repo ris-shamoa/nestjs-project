@@ -9,4 +9,7 @@ export class RegistrationDto {
 
   @IsEmail()
   email: string;
+
+  @IsString()
+  image: string;
 }

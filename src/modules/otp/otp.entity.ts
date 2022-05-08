@@ -15,7 +15,7 @@ export class Otp {
     @Column()
     expiry: Date;
 
-    @Column('varchar', {default: 'not-verified'})
+    @Column('varchar', { default: 'not_verified' })
     status: string;
 
     @ManyToOne(() => User, (user: User) => user.id)

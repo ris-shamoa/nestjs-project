@@ -12,7 +12,7 @@ export class OtpService {
         @InjectRepository(User)
         private userRepository: Repository<User>) { }
 
-    async sendOtp(mobile_number): Promise<boolean> {
+    async sendOtp(mobile_number): Promise<number> {
         let otp;
         if (process.env.NODE_ENV == 'DEVELOPMENT') {
             otp = 1234;
@@ -34,6 +34,6 @@ export class OtpService {
             status: 'not-verified'
         })
         await this.otpRepository.save(saveOtp);
-        return saveOtp ? true : false
+        return otp;
     }
 }

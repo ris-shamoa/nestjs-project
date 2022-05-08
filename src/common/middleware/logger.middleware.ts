@@ -17,7 +17,7 @@ export class loggerMiddleware implements NestMiddleware {
         content += 'Body\r\n';
         content += `${JSON.stringify(req.body)}\r\n`;
         content += '==================================================================================\r\n';
-        
+
         writeLog(logDir, fileName, content);
         next();
     }
