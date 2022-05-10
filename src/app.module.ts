@@ -9,6 +9,7 @@ import { UserModule } from './modules/user/user.module';
 import { DatabaseModule } from './modules/database/database.module';
 import { OtpModule } from './modules/otp/otp.module';
 import { FileModule } from './modules/files/files.module';
+import { MailModule } from './modules/mail/mail.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -26,7 +27,7 @@ import { FileModule } from './modules/files/files.module';
       AMAZON_SECRET_KEY: Joi.string().required(),
       AMAZON_BUCKET_NAME: Joi.string().required()
     })
-  }), UserModule, DatabaseModule, OtpModule, FileModule],
+  }), UserModule, DatabaseModule, OtpModule, FileModule, MailModule],
   controllers: [AppController],
   providers: [AppService],
 })
