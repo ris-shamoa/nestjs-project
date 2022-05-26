@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { HealthCheckError, HealthIndicator, HealthIndicatorResult } from "@nestjs/terminus";
-
+//comments added here.
 export interface User {
     name: string;
     type: string;
