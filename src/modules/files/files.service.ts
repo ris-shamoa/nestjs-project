@@ -1,5 +1,6 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
+import * as pdf from 'html-pdf';
 import { S3 } from "aws-sdk";
 
 @Injectable()
@@ -27,5 +28,31 @@ export class FileService {
             .promise();
 
         return Location;
+    }
+
+    async convertHtmlPage(data, userId) {
+        console.log("---- html in side the function -----", data)
+        var options: pdf.CreateOptions = { format: 'Letter', localUrlAccess: true };
+        
+        pdf.create(data, options).toFile('./businesscard.pdf', (err: Error, res: pdf.FileInfo) => {
+          if (err) return console.log("-- error -----",err);
+          console.log("---- response ----",res); // { filename: '/app/businesscard.pdf' }
+        });
+        // let Location;
+        // let fileName = "src/common/files/invoice.pdf";
+        // console.log("--- fileName ---", pdf);
+        // let buffer = await pdf.create(data).toFile(fileName, function (error, res) {
+        //     console.log("-- error ---", error);
+        //     console.log(res);
+        // });
+
+    
+        // tofile(async function (error, buffer) {
+        //     console.log("-- error ---", error);
+        //     console.log("---- buffer ----", buffer);
+        // });
+        // console.log("----- buffer after the create ----", buffer);
+        // Location = await this.uploadFile(buffer, fileName, userId, "htmlToPdf");
+        // return Location;
     }
 }
