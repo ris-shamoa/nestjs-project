@@ -6,6 +6,10 @@ import { RegistrationDto } from './dto/registration.dto';
 import { Otp } from '../otp/otp.entity';
 import { User } from './user.entity';
 import * as bcrypt from 'bcryptjs';
+import * as fs from 'fs';
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+import { jsPDF } from "jspdf";
 import { FileService } from '../files/files.service';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 import { HttpService } from '@nestjs/axios';
@@ -49,11 +53,27 @@ export class UserService {
 
   async uploadDocFromUrl(userId, url) {
     const { data } = await firstValueFrom(this.httpService.get(url, {
-      responseType: "arraybuffer",
+      responseType: "text",
     }
     ));
-    let Location = await this.filesService.uploadFile(data, "prescription", userId, "prescription_upload")
-    await this.userRepository.update({ id: userId }, { prescription: Location });
+
+    // Default export is a4 paper, portrait, using millimeters for units
+    const doc = new jsPDF();
+    let file = await fs.readFileSync("invoice.html", { encoding: "utf8" });
+    console.log("---- file ----", file);
+    let dom = new JSDOM(`${file}`);
+    console.log("-- file", dom.getElementById('pharmacy_name'))
+    doc.html(
+      file,
+      {
+        callback: function (doc) {
+          doc.save();
+        }
+     });
+     doc.save();
+    // let Location = await this.filesService.convertHtmlPage(file, userId);
+    // let Location = await this.filesService.uploadFile(data, "prescription", userId, "prescription_upload")
+    // await this.userRepository.update({ id: userId }, { prescription: Location });
     return Location;
   }
 
